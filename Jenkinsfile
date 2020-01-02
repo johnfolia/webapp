@@ -4,7 +4,7 @@ pipeline {
     maven 'Maven'
   }  
   environment {
-       TOMCAT_CRED=credentials('root')
+       TOMCAT_CRED=credentials('tomcat')
   }
   
   stages {
