@@ -21,7 +21,7 @@ pipeline {
    
    stage ('Deploy-To-Tomcat') {
             steps {
-           sshagent(['tomcat']) {
+              usernamePassword(['deployer_user']) {
                 sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/webapp-cicd-pipeline/target/*.war ansible@192.168.57.131:/opt/tomcat/webapps/webapp.war'
               }
            }
