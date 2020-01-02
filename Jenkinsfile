@@ -4,7 +4,7 @@ pipeline {
     maven 'Maven'
   }  
   environment {
-       TOMCAT_CRED=credentials('deployer_user')
+       TOMCAT_CRED=credentials('root')
   }
   
   stages {
@@ -25,7 +25,7 @@ pipeline {
    
    stage ('Deploy-To-Tomcat') {
      steps {
-      withCredentials($TOMCAT_CRED) {
+      ssh-agent($TOMCAT_CRED) {
        sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/webapp-cicd-pipeline/target/*.war ansible@192.168.57.131:/opt/tomcat/webapps/webapp.war'
               }
            }
