@@ -25,7 +25,7 @@ pipeline {
    
    stage ('Deploy-To-Tomcat') {
      steps {
-      ssh-agent($TOMCAT_CRED) {
+      sshagent($TOMCAT_CRED) {
        sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/webapp-cicd-pipeline/target/*.war ansible@192.168.57.131:/opt/tomcat/webapps/webapp.war'
               }
            }
