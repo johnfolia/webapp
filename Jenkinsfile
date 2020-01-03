@@ -23,7 +23,7 @@ pipeline {
    stage ('Deploy-To-Tomcat') {
      steps {
       sshagent(['ansible']) {
-      sh 'scp -o StrictHostKeyChecking=no target/*.war ansible@192.168.57.131:/home/ansible/tomcat/webapps/WebApp/webapp.war'
+      sh 'scp -o StrictHostKeyChecking=no target/*.war ansible@192.168.57.131:'
               }
            }
     }
