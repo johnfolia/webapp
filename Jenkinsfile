@@ -22,7 +22,7 @@ pipeline {
       }
     }
 
-    tage ('Source Composition Analysis') {
+    stage ('Source Composition Analysis') {
       steps {
          sh 'rm owasp* || true'
          sh 'wget "https://raw.githubusercontent.com/johnfolia/webapp/master/owasp-dependency-check.sh" '
