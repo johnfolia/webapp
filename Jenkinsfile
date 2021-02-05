@@ -14,14 +14,12 @@ pipeline {
     }
     stage ('Check-Git-Secrets') {
       steps {
-        sshagent(['ansadmin']) {
-        sh 'ssh -o StrictHostKeyChecking=no ansadmin@172.16.79.122'
         sh 'rm trufflehog || true'
-        sh 'docker run gesellix/trufflehog --json https://github.com/johnfolia/webapp.git > trufflehog'
+        sh 'docker -H ssh://ansadmin@172.16.79.104 run gesellix/trufflehog --json https://github.com/johnfolia/webapp.git > trufflehog'
         sh 'cat trufflehog'
       }
     }
-   } 
+    
 
     stage ('Build') {
       steps {
@@ -35,6 +33,6 @@ pipeline {
               }
            }
     }
-  }
- }
 }
+ 
+
