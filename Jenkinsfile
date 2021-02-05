@@ -20,7 +20,7 @@ pipeline {
     stage ('Deploy-To-Tomcat') {
      steps {
       sshagent(['ansadmin']) {
-      sh 'scp -o StrictHostKeyChecking=no /opt/deployment/devsecops/*.war ansadmin@172.16.79.104:/opt/tomcat/webapps/'
+      sh 'scp -o StrictHostKeyChecking=no target/*.war ansadmin@172.16.79.104:/opt/tomcat/webapps/'
               }
            }
     }
