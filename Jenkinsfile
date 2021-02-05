@@ -1,7 +1,7 @@
 pipeline {
   agent any 
   tools {
-    maven 'Maven'
+    maven 'M2_HOME'
   }  
   
   stages {
@@ -53,9 +53,16 @@ pipeline {
    
    stage ('Deploy-To-Tomcat') {
      steps {
-      sshagent(['ansible']) {
-      sh 'scp -o StrictHostKeyChecking=no target/*.war ansible@192.168.57.131:/home/ansible/tomcat/webapps/'
-              }
+      sshagent (credentials: ['ansadmin']) {
+                ansiblePlaybook(
+                    credentialsId: 'ansadmin',
+                    inventory: 'hosts',
+                    installation: 'Ansible-Software',
+                    limit: '172.16.79.126',
+                    playbook: '/opt/playbooks/DevSecOps/webapp/deploy-war.yml',
+                    extras: ' options and var that you want add for instance verbose mode : -vvv'
+ )
+            }
            }
     }
 
