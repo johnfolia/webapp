@@ -21,7 +21,7 @@ pipeline {
         sh 'cat trufflehog'
       }
     }
-    
+   } 
 
     stage ('Build') {
       steps {
