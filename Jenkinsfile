@@ -60,8 +60,8 @@ pipeline {
                     installation: 'Ansible-Software',
                     limit: '172.16.79.126',
                     playbook: '/opt/playbooks/DevSecOps/webapp/deploy-war.yml',
-                    extras: ' options and var that you want add for instance verbose mode : -vvv'
- )
+                    extras: 'options and var for instance verbose mode : -vvv'
+                )   
             }
            }
     }
