@@ -54,7 +54,17 @@ pipeline {
               }
            }
     }
-  }
-}
+
+    stage ('DAST') {
+      steps {
+        sshagent(['ansadmin']) {
+         sh 'ssh -o  StrictHostKeyChecking=no ansadmin@172.16.79.105 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://172.16.79.104:8080/WebApp/" || true'
+        }
+      }
+    }
+
+   
+  }#stages closing bracket
+}# pipeline closing bracket
 
 
