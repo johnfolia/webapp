@@ -64,7 +64,7 @@ pipeline {
     }
 
    
-  }#stages closing bracket
-}# pipeline closing bracket
+  }
+}
 
 
